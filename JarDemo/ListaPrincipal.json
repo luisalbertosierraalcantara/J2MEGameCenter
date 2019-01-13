@@ -1,0 +1,68 @@
+{
+  "Games": [
+    {
+      "id": 1,
+      "name": "1916 Dogfight",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/1916_Dogfight.jar?raw=true",
+      "desc": "Género que se caracteriza porque el jugador debe hacer uso de su velocidad, destreza en el control y tiempo de reacción para avanzar. Se trata de un género muy amplio que abarca los juegos de disparos, los juegos de lucha y que da lugar hibridaciones con casi cualquier otro género.",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/1916_Dogfight.jpeg",
+      "categoria": "Accion"
+    },    
+    {
+      "id": 2,
+      "name": "2012 Apocalypse",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/2012_Apocalypse.jar?raw=true",
+      "desc": "Género que se caracteriza porque el jugador debe hacer uso de su velocidad, destreza en el control y tiempo de reacción para avanzar. Se trata de un género muy amplio que abarca los juegos de disparos, los juegos de lucha y que da lugar hibridaciones con casi cualquier otro género.",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/2012-apocalypse.jpg",
+      "categoria": "Accion"
+    },    
+    {
+      "id": 3,
+      "name": "AH 6 Navy Battle",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/AH-6_Navy_Battle.jar?raw=true",
+      "desc": "Género que se caracteriza porque el jugador debe hacer uso de su velocidad, destreza en el control y tiempo de reacción para avanzar. Se trata de un género muy amplio que abarca los juegos de disparos, los juegos de lucha y que da lugar hibridaciones con casi cualquier otro género.",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/AH-6_Navy_Battle.jpg",
+      "categoria": "Accion"
+    },    
+    {
+      "id": 4,
+      "name": "ATV Of froad Fury",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/ATVOffroadFury.jar?raw=true",
+      "desc": "es una competición de velocidad, en la que los competidores tienen que completar un determinado trayecto empleando para ello el menor tiempo posible, o bien recorrer el mayor trayecto posible en cierto tiempo fijo",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/ATVOffroadFury.png",
+      "categoria": "Carrera"
+    },   
+    {
+      "id": 5,
+      "name": "Abracadaball",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/Abracadaball.jar?raw=true",
+      "desc": "Género que se caracteriza porque el jugador debe hacer uso de su velocidad, destreza en el control y tiempo de reacción para avanzar. Se trata de un género muy amplio que abarca los juegos de disparos, los juegos de lucha y que da lugar hibridaciones con casi cualquier otro género.",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/Abracadaball.jpeg",
+      "categoria": "Accion"
+    },    
+    {
+      "id": 6,
+      "name": "Absolute Minesweeper",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/Absolute_Minesweeper.jar?raw=true",
+      "desc": "Son aquellos juegos o entretenimientos en los que, el factor de la inteligencia, habilidades técnicas, planificación y despliegue, pueden hacer predominar o impulsar al jugador hacia la victoria del juego.",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/Absolute_Minesweeper.jpg",
+      "categoria": "Estrategia"
+    },
+    {
+      "id": 7,
+      "name": "Aces races",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/Aces_races.jar?raw=true",
+      "desc": "Es una competición de velocidad, en la que los competidores tienen que completar un determinado trayecto empleando para ello el menor tiempo posible, o bien recorrer el mayor trayecto posible en cierto tiempo fijo",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/Aces_races.jpg",
+      "categoria": "Carrera"
+    },
+    {
+      "id": 8,
+      "name": "Actraiser",
+      "url": "https://github.com/luisalbertosierraalcantara/J2MEGameCenter/blob/master/JarDemo/Actraiser.jar?raw=true",
+      "desc": "Caracterizados por la investigación, exploración, la solución de rompecabezas, la interacción con personajes del videojuego, y un enfoque en el relato en vez de desafíos basados en reflejos",
+      "image": "https://raw.githubusercontent.com/luisalbertosierraalcantara/J2MEGameCenter/master/imgDemo/Actraiser.jpeg",
+      "categoria": "Aventuras"
+    }
+  ]
+}

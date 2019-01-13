@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">J2ME Center Games</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">J2ME List Game</string>
+    <string name="nav_header_subtitle">A Center Downloads for J2ME game</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="fragment_emulator_btnDownload">** DESCARGAR APK **</string>
+    <string name="fragment_emulator_tvTitle">MEmulator Beta</string>
+
+    <string name="activity_details_btnDownload">** DESCARGAR **</string>
+    <string name="activity_details_tvDesc">Sonic Saga All  Star es un juego de carrera clasico
+        muy bueno que cuenta con tus personajes favoritos.</string>
+
+    <string name="activity_details_tvLabelsCategory">Categoria:</string>
+    <string name="activity_details_tvCategoryDetails">Race</string>
+    <string name="activity_details_tvTitle">Detalles del Juego</string>
+
+    <string name="activity_about_tvTitle">Software Developer</string>
+    <string name="activity_about_tvNameDev">Ing. Luis A. Sierra </string>
+    <string name="activity_about_tvEmailLabel">Email:</string>
+    <string name="activity_about_tvEmail">luisalbertosierraalcantara@gmail.com</string>
+    <string name="activity_about_tvCopyRight">© 2019 Todos los derechos reservados</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

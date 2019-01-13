@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DownloadEmulator"
+    android:background="#000000">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffeb3b"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:background="#000000"
+            android:text="@string/fragment_emulator_tvTitle" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="#282828"
+        android:scaleType="center"
+        android:src="@drawable/ic_memulator"
+        android:layout_below="@id/textView2"
+        android:layout_centerInParent="true"
+        />
+
+
+        <Button
+            android:id="@+id/btndownload_apk"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/fragment_emulator_btnDownload"
+            android:layout_margin="5dp"
+            android:textSize="25sp"
+            android:background="#ff0307"
+            android:textColor="#ffffff"
+            android:layout_below="@id/imageView3"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_gamelib"
+            android:layout_below="@id/imageView2"
+            android:scaleType="fitXY" />
+
+    </RelativeLayout>
+        
+    </ScrollView>
+
+
+</FrameLayout>

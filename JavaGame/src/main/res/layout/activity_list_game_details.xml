@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ededed"
+    tools:context=".ui.ListGameDetails">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/Relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/titleDetails"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#000000"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:layout_toRightOf="@id/iconLogoDetails"
+                android:text="@string/activity_details_tvTitle" />
+
+
+            <ImageView
+                android:id="@+id/iconLogoDetails"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#000000"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/ic_app_icon" />
+
+
+            <ImageView
+                android:id="@+id/PictureDetails"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#c4c4c4"
+                android:layout_below="@id/iconLogoDetails"
+                app:srcCompat="@drawable/ic_game_demo"/>
+
+            <TextView
+                android:id="@+id/tvLabelsCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textColor="#2b00c2"
+                android:textSize="20sp"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:layout_below="@id/PictureDetails"
+                android:text="@string/activity_details_tvLabelsCategory" />
+
+            <TextView
+                android:id="@+id/tvCategoryDetails"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:layout_toRightOf="@id/tvLabelsCategory"
+                android:layout_below="@id/PictureDetails"
+                android:text="@string/activity_details_tvCategoryDetails" />
+
+            <TextView
+                android:id="@+id/tvDescDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="16sp"
+                android:layout_marginBottom="15dp"
+                android:layout_below="@id/tvLabelsCategory"
+                android:text="@string/activity_details_tvDesc" />
+
+            <Button
+                android:id="@+id/btndownload_apk"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/activity_details_btnDownload"
+                android:layout_margin="5dp"
+                android:textSize="25sp"
+                android:background="#ff0307"
+                android:textColor="#ffffff"
+                android:layout_below="@id/tvDescDetails"/>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

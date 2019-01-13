@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_emulator"
+            android:icon="@drawable/ic_phonelink_black_24dp"
+            android:title="Emulator J2ME" />
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_adventure"
+            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:title="Adventure Game" />
+        <item
+            android:id="@+id/nav_puzzle"
+            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:title="Puzzle Game" />
+        <item
+            android:id="@+id/nav_action"
+            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:title="Action Game" />
+
+        <item
+            android:id="@+id/nav_combat"
+            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:title="Combat Game" />
+
+        <item
+            android:id="@+id/nav_race"
+            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:title="Race Game" />
+
+        <item
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="Favorite" />
+
+
+    </group>
+
+    <item android:title="More">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_outline_black_24dp"
+                android:title="About" />
+        </menu>
+    </item>
+
+</menu>

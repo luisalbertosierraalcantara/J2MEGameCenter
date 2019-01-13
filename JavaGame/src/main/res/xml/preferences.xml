@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Notificaciones">
+        <CheckBoxPreference
+            android:key="checkboxPref"
+            android:title="Notificacion"
+            android:summary="Permitir notificaciones"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Base de datos local">
+        <ListPreference
+            android:key="listOptionsPref"
+            android:title="Borrar DB"
+            android:summary="Borrar todo el contenido de la base de datos"
+            android:entries="@array/listOptions"
+            android:entryValues="@array/listOptionsValues" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Descargas en segundo plano">
+        <CheckBoxPreference
+            android:key="JobScheduled"
+            android:title="Job Scheduled"
+            android:summary="Permitir  descargas en segundo plano. "
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

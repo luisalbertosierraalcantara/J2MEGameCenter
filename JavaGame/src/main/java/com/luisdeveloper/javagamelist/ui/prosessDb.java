@@ -12,7 +12,13 @@ import com.luisdeveloper.javagamelist.room.entity.games_table;
 import java.util.ArrayList;
 import java.util.List;
 
-public class prosessDb extends MainActivity{
+public class prosessDb extends MainActivity {
+
+    Context mContext;
+
+    public prosessDb(Context context) {
+        this.mContext = context;
+    }
 
     //llenar lista de canales
     protected void updateDatabase(List<games_object> data) {
@@ -41,14 +47,14 @@ public class prosessDb extends MainActivity{
             gamesDatabase.daoAccess(database).UpdateGamestoDb(data);
             msg = "actualizaron " + Integer.toString(resp) + " registros ";
 
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("listOptionsPref","0");
             editor.putBoolean("checkboxPref",false);
             editor.commit();
             //prefs.setString("listOptionsPref", "0");
 
-            SharedPreferences cargaInicial = getSharedPreferences("CargaInicial", Context.MODE_PRIVATE);
+            SharedPreferences cargaInicial = mContext.getSharedPreferences("CargaInicial", mContext.MODE_PRIVATE);
             SharedPreferences.Editor cargaInicialEditor = cargaInicial.edit();
             cargaInicialEditor.putString("cargado","1");
             cargaInicialEditor.commit();
@@ -59,7 +65,7 @@ public class prosessDb extends MainActivity{
             msg = "insertaron " + Integer.toString(resp) + " registros ";
         }
 
-        Toast.makeText(getApplicationContext(),"Se "+msg+" correctamente!!",Toast.LENGTH_SHORT).show();
-        BeginTransationFragment();
+        Toast.makeText(mContext.getApplicationContext(),"Se "+msg+" correctamente!!",Toast.LENGTH_SHORT).show();
+        //BeginTransationFragment();
     }
 }

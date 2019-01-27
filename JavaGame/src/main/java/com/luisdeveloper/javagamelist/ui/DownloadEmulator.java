@@ -2,14 +2,17 @@ package com.luisdeveloper.javagamelist.ui;
 
 
 import android.app.DownloadManager;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.luisdeveloper.javagamelist.R;
 
@@ -48,20 +51,27 @@ public class DownloadEmulator extends Fragment {
         btndownload_apk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("https://github.com/luisalbertosierraalcantara/MEmulator/blob/master/APK/MEmulator-1.0-beta.apk?raw=true");
-                DownloadManager.Request request = new DownloadManager.Request(uri);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,"MEmulator-1.0-beta");
-                request.allowScanningByMediaScanner();
-                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-                request.setTitle("Descargando Memulator Beta v1.0...");
-                request.setVisibleInDownloadsUi(true);
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-                DownloadManager downloadManager = (DownloadManager) v.getContext().getApplicationContext().getSystemService(v.getContext().getApplicationContext().DOWNLOAD_SERVICE);
-                downloadManager.enqueue(request);
-            }
+                    Uri uri = Uri.parse("https://github.com/luisalbertosierraalcantara/MEmulator/blob/master/APK/MEmulator-1.0-beta.apk?raw=true");
+                    DownloadManager.Request request = new DownloadManager.Request(uri);
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "MEmulator-1.0-beta.apk");
+                    request.allowScanningByMediaScanner();
+                    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+                    request.setTitle("Descargando Memulator Beta v1.0...");
+                    request.setVisibleInDownloadsUi(true);
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+                    DownloadManager downloadManager = (DownloadManager) v.getContext().getApplicationContext().getSystemService(v.getContext().getApplicationContext().DOWNLOAD_SERVICE);
+                    downloadManager.enqueue(request);
+
+                }
         });
 
         return view;
+
+
     }
+
+
+
 }

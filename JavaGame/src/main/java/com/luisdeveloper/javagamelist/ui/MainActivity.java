@@ -1,5 +1,6 @@
 package com.luisdeveloper.javagamelist.ui;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,8 +20,10 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -77,6 +81,12 @@ public class MainActivity extends AppCompatActivity
     private ImageCache imageCache;
     private final int RESULT_LOAD_IMAGE = 1;
 
+    private int winStartSeconds = 30;
+    private int winEndSeconds = 60;
+    private int initialBackoffSeconds = 30;
+    private int maximumBackoffSeconds = 3600;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +103,12 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Permitions
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, 1);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 1);
+
         imageCache = new ImageCache(this, -1);
 
         tasks = new ArrayList<>();
@@ -103,12 +119,12 @@ public class MainActivity extends AppCompatActivity
         if (isOnline()) {
 
                 if (JobScheduled) {
-                    Intent i = new Intent(this, updateGamesListServices.class);
-                    startService(i);
+                    //Intent i = new Intent(this, updateGamesListServices.class);
+                    //startService(i);
 
                     String Job_Tag = "my_job_tag";
                     //final int horas = (int) TimeUnit.HOURS.toSeconds(6); // Every 1 hour periodicity expressed as seconds
-                    //final int minutos = (int) TimeUnit.MINUTES.toSeconds(1); // a small(ish) window of time when triggering is OK
+                    //final int minutos = (int) TimeUnit.MINUTES.toSeconds(15); // a small(ish) window of time when triggering is OK
 
                     FirebaseJobDispatcher jobDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
                     Job job = jobDispatcher.newJobBuilder().
@@ -116,7 +132,7 @@ public class MainActivity extends AppCompatActivity
                             setLifetime(Lifetime.FOREVER).
                             setRecurring(true).
                             setTag(Job_Tag).
-                            setTrigger(Trigger.executionWindow(10, 15)).  //3600x 4 = 14400 (4)horas en total
+                            setTrigger(Trigger.executionWindow(winStartSeconds,winEndSeconds)).  //3600x 4 = 14400 (4)horas en total
                             //setTrigger(Trigger.executionWindow(10, 15)).
                                     setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL).
                                     setReplaceCurrent(false).
@@ -146,7 +162,6 @@ public class MainActivity extends AppCompatActivity
             BuildMessagesNoInternet();
             BeginTransationFragment();
         }
-
 
 
     }
@@ -187,7 +202,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_memulator) {
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            DownloadEmulator emulator = new DownloadEmulator();
+            transaction.replace(R.id.contenedor,emulator);
+            transaction.commit();
             return true;
         }
 
@@ -202,7 +222,10 @@ public class MainActivity extends AppCompatActivity
 
         game_recordcount menu = new game_recordcount();
 
+        ActionBar actionBar = getSupportActionBar();
+
         if (id == R.id.nav_emulator) {
+            actionBar.setTitle("Emulator");
             //Init fragment
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -212,23 +235,30 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_home) {
             menu.menu_selected = "home";
+            actionBar.setTitle("Home");
             BeginTransationFragment();
         } else if (id == R.id.nav_adventure) {
+            actionBar.setTitle("Aventuras");
             menu.menu_selected = "aventuras";
             BeginTransationFragment();
         } else if (id == R.id.nav_puzzle) {
+            actionBar.setTitle("Estrategia");
             menu.menu_selected = "estrategia";
             BeginTransationFragment();
         } else if (id == R.id.nav_action) {
+            actionBar.setTitle("Accion");
             menu.menu_selected = "accion";
             BeginTransationFragment();
         } else if (id == R.id.nav_combat) {
+            actionBar.setTitle("Combate");
             menu.menu_selected = "combate";
             BeginTransationFragment();
         } else if (id == R.id.nav_race) {
+            actionBar.setTitle("Carreras");
             menu.menu_selected = "carreras";
             BeginTransationFragment();
         } else if (id == R.id.nav_favorite) {
+            actionBar.setTitle("Favoritos");
             menu.menu_selected = "favoritos";
             BeginTransationFragment();
         } else if (id == R.id.nav_settings) {
@@ -269,34 +299,35 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void saveImageToCahe(String url, String imageName) {
-        Bitmap bmImg = imageCache.getBitmap(url);
-        File filename;
-        try {
-            String path1 = Environment.getExternalStorageDirectory().toString();
-            Log.i("in save()", "after mkdir");
-            File file = new File(path1 + "/" + "JavaGameList");
-            if (!file.exists())
-                file.mkdirs();
-            filename = new File(file.getAbsolutePath() + "/" + imageName
-                    + ".jpg");
-            Log.i("in save()", "after file");
-            FileOutputStream out = new FileOutputStream(filename);
-            Log.i("in save()", "after outputstream");
-            bmImg.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            out.flush();
-            out.close();
-            Log.i("in save()", "after outputstream closed");
-            //File parent = filename.getParentFile();
-            ContentValues image = getImageContent(filename,imageName);
-            Uri result = getContentResolver().insert(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, image);
-            Toast.makeText(getApplicationContext(),
-                    "File is Saved in  " + filename, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }
+            Bitmap bmImg = imageCache.getBitmap(url);
+            File filename;
+            try {
+                String path1 = Environment.getExternalStorageDirectory().toString();
+                Log.i("in save()", "after mkdir");
+                File file = new File(path1 + "/" + "JavaGameList");
+                if (!file.exists())
+                    file.mkdirs();
+                filename = new File(file.getAbsolutePath() + "/" + imageName
+                        + ".jpg");
+                Log.i("in save()", "after file");
+                FileOutputStream out = new FileOutputStream(filename);
+                Log.i("in save()", "after outputstream");
+                bmImg.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                out.flush();
+                out.close();
+                Log.i("in save()", "after outputstream closed");
+                //File parent = filename.getParentFile();
+                ContentValues image = getImageContent(filename, imageName);
+                Uri result = getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, image);
+                Toast.makeText(getApplicationContext(),
+                        "File is Saved in  " + filename, Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
     private ContentValues getImageContent(File parent,String imageName) {
         ContentValues image = new ContentValues();
@@ -403,8 +434,9 @@ public class MainActivity extends AppCompatActivity
             }
 
             GameList = result;
-            prosessDb prosess = new prosessDb();
+            prosessDb prosess = new prosessDb(getApplicationContext());
             prosess.updateDatabase(GameList);
+            BeginTransationFragment();
         }
     }
 

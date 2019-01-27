@@ -1,16 +1,20 @@
 package com.luisdeveloper.javagamelist.ui;
 
+import android.Manifest;
 import android.app.DownloadManager;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luisdeveloper.javagamelist.R;
 
@@ -42,8 +46,6 @@ public class ListGameDetails extends AppCompatActivity {
         PictureDetails = (ImageView) findViewById(R.id.PictureDetails);
         tvCategory= (TextView)findViewById(R.id.tvCategoryDetails);
 
-
-
         TvTitle.setText(name);
         TvDesc.setText(desc);
         tvCategory.setText(categoria);
@@ -58,18 +60,19 @@ public class ListGameDetails extends AppCompatActivity {
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse(url);
-                DownloadManager.Request request = new DownloadManager.Request(uri);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,name);
-                request.allowScanningByMediaScanner();
-                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-                request.setTitle("Descargando Juego...");
-                request.setVisibleInDownloadsUi(true);
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-                DownloadManager downloadManager = (DownloadManager) getApplicationContext().getSystemService(getApplicationContext().DOWNLOAD_SERVICE);
-                downloadManager.enqueue(request);
-            }
+                    Uri uri = Uri.parse(url);
+                    DownloadManager.Request request = new DownloadManager.Request(uri);
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name);
+                    request.allowScanningByMediaScanner();
+                    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+                    request.setTitle("Descargando Juego...");
+                    request.setVisibleInDownloadsUi(true);
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+                    DownloadManager downloadManager = (DownloadManager) getApplicationContext().getSystemService(getApplicationContext().DOWNLOAD_SERVICE);
+                    downloadManager.enqueue(request);
+                }
         });
 
     }

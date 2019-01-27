@@ -1,5 +1,6 @@
 package com.luisdeveloper.javagamelist.services;
 
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -8,6 +9,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -17,6 +19,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -62,7 +66,8 @@ public class updateGamesListServices  extends JobService  {
 
     Jobtask backgroundTask;
     @Override
-    public boolean onStartJob(final JobParameters job) {
+    //public boolean onStartJob(final JobParameters job) {
+    public boolean onStartJob(@NonNull JobParameters job) {
 
         if (isOnline()) {
             imageCache = new ImageCache(this, -1);
@@ -74,7 +79,7 @@ public class updateGamesListServices  extends JobService  {
             backgroundTask.execute(url.RESTSERVICE);
         }
 
-        return true;
+        return false;
     }
 
     @Override
@@ -138,6 +143,9 @@ public class updateGamesListServices  extends JobService  {
     }
 
     private void saveImageToCahe(String url, String imageName) {
+
+
+
         Bitmap bmImg = imageCache.getBitmap(url);
         File filename;
         try {
@@ -161,6 +169,7 @@ public class updateGamesListServices  extends JobService  {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI, image);
             Toast.makeText(getApplicationContext(),
                     "File is Saved in  " + filename, Toast.LENGTH_SHORT).show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

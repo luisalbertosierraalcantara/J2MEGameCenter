@@ -63,7 +63,7 @@ public class ListGameDetails extends AppCompatActivity {
 
                     Uri uri = Uri.parse(url);
                     DownloadManager.Request request = new DownloadManager.Request(uri);
-                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name);
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name+".jar");
                     request.allowScanningByMediaScanner();
                     request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
                     request.setTitle("Descargando Juego...");
